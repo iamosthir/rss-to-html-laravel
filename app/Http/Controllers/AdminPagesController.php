@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GoogleTools;
 use App\Models\RssUrl;
 use App\Models\User;
 use Exception;
@@ -194,6 +195,22 @@ class AdminPagesController extends Controller
                 "message" => "Parameter missing"
             ];
         }
+    }
+
+    public function googleTools()
+    {
+        if($data = GoogleTools::find(1))
+        {
+            return view("admin.pages.google-tools",compact("data"));
+        }
+        else
+        {
+            $data = new GoogleTools();
+            $data->id=1;
+            $data->save();
+            return view("admin.pages.google-tools",compact("data"));
+        }
+        
     }
 }
 

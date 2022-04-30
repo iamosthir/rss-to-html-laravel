@@ -49,6 +49,10 @@ Route::group(["prefix"=>"admin", "middleware" => "auth"],function(){
     });
     // 
 
+    // Google Analytics
+    Route::get("/google-tools","AdminPagesController@googleTools")->name("admin.google-tools");
+    // End
+
 
     // Carousel item preview
     Route::get("/carousel-preview","AdminPagesController@carouselPreview");
@@ -73,6 +77,8 @@ Route::group(["prefix"=>"admin", "middleware" => "auth"],function(){
         Route::post("/add-user","UserController@addUser")->name("api.add-user");
 
         Route::post("/update-user-profile", "UserController@updateUser")->name("api.update-user-profile");
+
+        Route::post("/update-google-tools-data","GoogleToolsController@update")->name("api.update-googleTool");
 
     });
 

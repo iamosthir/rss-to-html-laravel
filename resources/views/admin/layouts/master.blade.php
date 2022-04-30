@@ -1,6 +1,10 @@
 @php
     $routeName = request()->route()->getName();
     $routeGroup = request()->route()->getPrefix();
+
+    // analytics and adsense
+    $gData = \App\Models\GoogleTools::find(1);
+    // End
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -190,6 +194,15 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="{{ route("admin.google-tools") }}" class="nav-link {{ $routeName=='admin.google-tools'?'active':'' }}">
+              <i class="fab fa-google"></i>
+              <p>
+                Analytics & Adsense
+              </p>
+            </a>
+          </li>
+
           <li class="nav-header">User Account</li>
 
           <li class="nav-item">
@@ -273,6 +286,21 @@
 <script src="{{ asset("backend/plugins/toastr/toastr.min.js") }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset("backend/dist/js/demo.js") }}"></script>
+
+{{-- analytics script --}}
+@if (!empty($gData) && !empty($gData->analyticsId))
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $gData->analyticsId }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+@endif
+{{-- end --}}
+
 @yield('extraJs')
 </body>
 </html>
