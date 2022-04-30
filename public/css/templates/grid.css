@@ -1,0 +1,12 @@
+/* paste this css to your website for the proper result */
+.blog-thumb {
+    height: 230px !important;
+    object-fit: cover;
+}
+.author-thumb {
+    width: 40px !important;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* end */
